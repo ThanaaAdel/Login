@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login/pages/foretpassword.dart';
+import 'package:login/pages/home.dart';
 import 'package:login/shared/colors.dart';
 import 'package:login/shared/contants.dart';
 import 'package:login/shared/snakbar.dart';
@@ -56,24 +57,25 @@ class _LoginState extends State<Login> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 35,
                     ),
-                    Text(
+                    const Text(
                       "Log in",
                       style: TextStyle(fontSize: 33, fontFamily: "myfont"),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 35,
                     ),
                     SvgPicture.asset(
-                      "assets/icons/login.svg",
+                      "assets/images/girl-2696947__340.jpg",
                       width: 288,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 35,
                     ),
                     TextFormField(
+
                         validator: (email) {
                           return email!.contains(
                               RegExp(
@@ -87,7 +89,7 @@ class _LoginState extends State<Login> {
                         obscureText: false,
                         decoration: decorationTextfield.copyWith(
                             hintText: "Enter Your Email : ",
-                            suffixIcon: Icon(Icons.email)
+                            suffixIcon: const Icon(Icons.email)
                         )),
                     const SizedBox(
                       height: 33,
@@ -106,8 +108,8 @@ class _LoginState extends State<Login> {
                                   });
                                 },
                                 icon: isVisable
-                                    ? Icon(Icons.visibility)
-                                    : Icon(Icons.visibility_off)))),
+                                    ? const Icon(Icons.visibility)
+                                    : const Icon(Icons.visibility_off)))),
                     const SizedBox(
                       height: 33,
                     ),
@@ -116,6 +118,12 @@ class _LoginState extends State<Login> {
                         await signIn();
                         if (!mounted) return;
                         showSnackBar(context, "successfully sign-in ☺");
+
+
+                        Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => Home()),
+                        );
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(Colors.purple),
@@ -123,10 +131,10 @@ class _LoginState extends State<Login> {
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
                       ),
                       child: isLoading
-                          ? CircularProgressIndicator(
+                          ? const CircularProgressIndicator(
                         color: Colors.white,
                       )
-                          : Text(
+                          : const Text(
                         "Log In",
                         style: TextStyle(fontSize: 19),
                       ),
@@ -141,7 +149,7 @@ class _LoginState extends State<Login> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ForgetPassword(),
+                              builder: (context) => const ForgetPassword(),
                             ),
                           );
                         }, child:const Text('Click Here',
